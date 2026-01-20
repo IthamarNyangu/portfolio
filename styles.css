@@ -141,6 +141,9 @@ body {
 
 .hero h1 {
     font-size: 3.5rem;
+}
+
+.hero h2 {
     margin-bottom: 20px;
 }
 
