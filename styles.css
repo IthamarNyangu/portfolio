@@ -354,6 +354,30 @@ body {
     font-size: 0.95rem;
 }
 
+/* Make all card images same height */
+.project-image,
+.blog-image {
+  height: 200px;            /* pick a consistent height */
+  overflow: hidden;
+  background: #e9eef5;      /* fallback behind images */
+}
+
+.project-image img,
+.blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* crops nicely without stretching */
+  display: block;
+}
+
+.project-description,
+.blog-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;       /* change 3 → 4 if you want */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* Experience Section */
 .timeline {
     position: relative;
