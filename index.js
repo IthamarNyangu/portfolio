@@ -80,6 +80,33 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Simple per-card carousel
+document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+  const track = carousel.querySelector('[data-track]');
+  const prevBtn = carousel.querySelector('[data-prev]');
+  const nextBtn = carousel.querySelector('[data-next]');
+  const slides = Array.from(track.querySelectorAll('img'));
+
+  let index = 0;
+
+  function update() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    index = (index - 1 + slides.length) % slides.length;
+    update();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    index = (index + 1) % slides.length;
+    update();
+  });
+
+  update();
+});
+
+
 // Form submission handling with fetch
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
