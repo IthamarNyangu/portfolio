@@ -168,7 +168,7 @@ body {
 
 .about-image img {
     border-radius: 50%;
-    border: 5px solid var(--primary-color);
+    border: 2px solid var(--primary-color);
     max-width: 300px;
     height: auto;
 }
