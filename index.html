@@ -523,6 +523,10 @@ The application enables real-time search, filtering, and retrieval of asset reco
                 </div>
                 <div class="contact-form">
                     <form id="contactForm">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_subject" value="New message from portfolio">
+                        <input type="hidden" name="_replyto" value="%email%">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
@@ -540,6 +544,7 @@ The application enables real-time search, filtering, and retrieval of asset reco
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Send Message</button>
+                        <p class="form-note">This will open your email app to send the message.</p>
                     </form>
                 </div>
             </div>

@@ -107,93 +107,120 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
 });
 
 
-// Form submission handling with fetch
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+// // Form submission handling with fetch
+// const contactForm = document.getElementById('contactForm');
+// if (contactForm) {
+//     contactForm.addEventListener('submit', function(e) {
+//         e.preventDefault();
         
-        // Disable submit button during submission
-        const submitBtn = this.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
+//         // Disable submit button during submission
+//         const submitBtn = this.querySelector('button[type="submit"]');
+//         submitBtn.disabled = true;
+//         submitBtn.textContent = 'Sending...';
         
-        // Get form values
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value,
-            _template: 'table',
-            _captcha: 'false'
-        };
+//         // Get form values
+//         const formData = {
+//             name: document.getElementById('name').value,
+//             email: document.getElementById('email').value,
+//             subject: document.getElementById('subject').value,
+//             message: document.getElementById('message').value,
+//             _template: 'table',
+//             _captcha: 'false'
+//         };
 
-        // Show loading state
-        const formGroups = document.querySelectorAll('.form-group');
-        formGroups.forEach(group => group.style.opacity = '0.5');
+//         // Show loading state
+//         const formGroups = document.querySelectorAll('.form-group');
+//         formGroups.forEach(group => group.style.opacity = '0.5');
+
+//         const form = document.getElementById('contactForm');
         
-        fetch("https://formsubmit.co/ajax/6cc0bfc0b517f89af990e586dd718681", {
-            method: "POST",
-            headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => {
-            if (!response.ok) throw new Error('Network response was not ok');
-            return response.json();
-        })
-        .then(data => {
-            // Show success message
-            formGroups.forEach(group => group.style.display = 'none');
-            submitBtn.style.display = 'none';
+//         fetch("https://formsubmit.co/ajax/6cc0bfc0b517f89af990e586dd718681", {
+//             method: "POST",
+//             body: new FormData(form)
+//         })
+//         .then(response => {
+//             if (!response.ok) throw new Error('Network response was not ok');
+//             return response.json();
+//         })
+//         .then(data => {
+//             // Show success message
+//             formGroups.forEach(group => group.style.display = 'none');
+//             submitBtn.style.display = 'none';
             
-            const successMessage = document.createElement('div');
-            successMessage.className = 'success-message';
-            successMessage.innerHTML = `
-                <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--success-color); margin-bottom: 15px;"></i>
-                <h3>Thank You!</h3>
-                <p>Your message has been sent successfully. I'll get back to you soon.</p>
-            `;
-            contactForm.appendChild(successMessage);
+//             const successMessage = document.createElement('div');
+//             successMessage.className = 'success-message';
+//             successMessage.innerHTML = `
+//                 <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--success-color); margin-bottom: 15px;"></i>
+//                 <h3>Thank You!</h3>
+//                 <p>Your message has been sent successfully. I'll get back to you soon.</p>
+//             `;
+//             contactForm.appendChild(successMessage);
             
-            // Reset form after 5 seconds
-            setTimeout(() => {
-                contactForm.reset();
-                successMessage.remove();
-                formGroups.forEach(group => {
-                    group.style.display = 'block';
-                    group.style.opacity = '1';
-                });
-                submitBtn.style.display = 'block';
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Send Message';
-            }, 5000);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            // Show error message
-            const errorMessage = document.createElement('div');
-            errorMessage.className = 'error-message';
-            errorMessage.innerHTML = `
-                <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #ff4444; margin-bottom: 15px;"></i>
-                <h3>Error</h3>
-                <p>There was a problem sending your message. Please try again later.</p>
-            `;
-            contactForm.appendChild(errorMessage);
+//             // Reset form after 5 seconds
+//             setTimeout(() => {
+//                 contactForm.reset();
+//                 successMessage.remove();
+//                 formGroups.forEach(group => {
+//                     group.style.display = 'block';
+//                     group.style.opacity = '1';
+//                 });
+//                 submitBtn.style.display = 'block';
+//                 submitBtn.disabled = false;
+//                 submitBtn.textContent = 'Send Message';
+//             }, 5000);
+//         })
+//         .catch(error => {
+//             console.error('Error:', error);
+//             // Show error message
+//             const errorMessage = document.createElement('div');
+//             errorMessage.className = 'error-message';
+//             errorMessage.innerHTML = `
+//                 <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #ff4444; margin-bottom: 15px;"></i>
+//                 <h3>Error</h3>
+//                 <p>There was a problem sending your message. Please try again later.</p>
+//             `;
+//             contactForm.appendChild(errorMessage);
             
-            // Reset form state
-            formGroups.forEach(group => group.style.opacity = '1');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Send Message';
+//             // Reset form state
+//             formGroups.forEach(group => group.style.opacity = '1');
+//             submitBtn.disabled = false;
+//             submitBtn.textContent = 'Send Message';
             
-            setTimeout(() => {
-                errorMessage.remove();
-            }, 5000);
-        });
-    });
+//             setTimeout(() => {
+//                 errorMessage.remove();
+//             }, 5000);
+//         });
+//     });
+// }
+
+// Contact form -> opens user's email client (mailto)
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    const to = "ithamarnyangu@gmail.com"; // <-- your email
+
+    const mailSubject = encodeURIComponent(`[Portfolio] ${subject || "New message"}`);
+
+    const body = encodeURIComponent(
+      `Name: ${name}\n` +
+      `Email: ${email}\n\n` +
+      `Message:\n${message}\n\n` +
+      `---\nSent from: https://ithamarnyangu.github.io/portfolio/`
+    );
+
+    // This opens the user's default email app with fields filled in
+    window.location.href = `mailto:${to}?subject=${mailSubject}&body=${body}`;
+  });
 }
+
 
 // Display current year in footer copyright
 const yearSpan = document.querySelector('.footer .year');
