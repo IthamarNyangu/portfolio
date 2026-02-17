@@ -167,10 +167,10 @@ body {
 }
 
 .about-image img {
-    width: 280px;          /* fixed size */
-    height: 280px;         /* SAME as width */
+    width: 280px;          
+    height: 280px;         
     border-radius: 50%;
-    object-fit: cover;     /* crops image instead of stretching */
+    object-fit: cover;    
     border: 1px solid black;
     display: block;
 }
