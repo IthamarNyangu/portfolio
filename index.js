@@ -8,11 +8,13 @@ const currentTheme = localStorage.getItem('theme') ||
 if (currentTheme === 'dark') {
     document.body.classList.add('dark-mode');
 }
+themeToggle.setAttribute('aria-pressed', String(document.body.classList.contains('dark-mode')));
 
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
     localStorage.setItem('theme', theme);
+    themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
     
     // Update navbar background when toggling theme
     const navbar = document.querySelector('.navbar');
@@ -26,9 +28,10 @@ themeToggle.addEventListener('click', () => {
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
         e.preventDefault();
         
-        const targetId = this.getAttribute('href');
         const target = document.querySelector(targetId);
         
         if (target) {
@@ -55,7 +58,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 return -c / 2 * (t * (t - 2) - 1) + b;
             }
             
-            requestAnimationFrame(animation);
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                window.scrollTo(0, targetPosition - 80);
+            } else {
+                requestAnimationFrame(animation);
+            }
         }
     });
 });
