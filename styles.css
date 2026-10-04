@@ -498,6 +498,37 @@ body {
     margin-bottom: 8px;
 }
 
+.experience-systems {
+    margin-top: 26px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color, #dbe4ec);
+}
+
+.experience-systems h5 {
+    margin-bottom: 16px;
+    color: var(--dark-color);
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+}
+
+.system-improvements {
+    display: grid;
+    gap: 12px;
+    list-style: none;
+}
+
+.system-improvements li {
+    padding: 14px 16px;
+    border-left: 3px solid var(--secondary-color);
+    background: var(--light-color);
+    color: var(--gray-color);
+    line-height: 1.65;
+}
+
+.system-improvements strong {
+    color: var(--dark-color);
+}
+
 /* Contact Section */
 .contact-grid {
     display: grid;
@@ -677,6 +708,11 @@ body {
 
 .dark-mode .timeline-date::after {
     background-color: #2a2a2a;
+}
+
+.dark-mode .system-improvements li {
+    background: #172d3e;
+    color: #bfd0dc;
 }
 
 .dark-mode .theme-toggle .fa-moon {
@@ -1045,11 +1081,10 @@ body {
     font-size: 0.77rem;
     letter-spacing: .08em;
     text-align: right;
-    text-transform: uppercase;
 }
 
 .about-content { align-items: flex-start; gap: clamp(40px, 7vw, 82px); }
-.about-image img { width: 260px; height: 320px; border: 0; border-radius: 3px; box-shadow: var(--shadow-soft); }
+.about-image img { width: 260px; height: 320px; border: 0; border-radius: 3px; box-shadow: var(--shadow-soft); object-position: 35% center; }
 .about-text { max-width: 760px; }
 .about-text p { color: #3e566c; }
 .about-points { padding-left: 1.15rem; }
@@ -1089,7 +1124,11 @@ body {
 .timeline-content h4 { color: var(--primary-color); }
 .experience-details { color: #486278; }
 
-.contact-info { padding: 36px; border-radius: 4px; background: var(--navy-deep); }
+.contact-info { padding: 36px; border-radius: 4px; background: var(--navy-deep); color: #f4f8fb; }
+.contact-info h3,
+.contact-info p,
+.contact-info .contact-method,
+.contact-info .social-link { color: #f4f8fb; }
 .contact-form { padding: 36px; }
 .form-group input, .form-group textarea { border: 1px solid #c9d6e2; border-radius: 3px; background: #fbfcfd; }
 .form-group input:focus, .form-group textarea:focus { border-color: var(--primary-color); outline: 3px solid rgba(23,105,170,.13); }
